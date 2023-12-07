@@ -9,4 +9,6 @@ spec:
     - name: database 
       image: redis
       ports:
-        - containerPort: 6379
+        - containerPort: 63
+
+# Just adding comment          
