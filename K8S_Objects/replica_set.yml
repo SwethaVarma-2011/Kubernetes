@@ -1,0 +1,28 @@
+# ReplicaSet : Simillar to ReplicationController, However we have selector component in replicaSet. For instance, in selector component we select key as matchlabels, then whenever we are creating the replicas of the pod first it will check whether there are any pods with the same type, if yes then it will include that pod also.
+
+# Create a replicaset file to start 4 tomcat replicas and then perform scaling 
+
+apiVersion : apps/v1
+kind       : ReplicaSet
+metadata   : 
+  name      : tomcat-rs
+  labels    :
+    author  : swetha
+    type    : webserver
+spec       :
+  replicas   : 4
+  selector   :
+    matchlabels :
+      type  : webserver
+  template   :
+    metadata   :  
+      name : tomcat-pod
+      labels:
+        type : webserver
+    spec       :  
+      containers :
+        - name : mywebserver
+          image: tomcat
+          ports:
+            - containerport : 8080
+              hostport      : 9090

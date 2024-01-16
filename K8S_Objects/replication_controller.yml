@@ -1,0 +1,25 @@
+# Replication Controller object is used to create the replicas of the pod to avoid any downtime. It helps in maintiang the load balancing and scaling. It mainly he;ps to maintain multiple instances of the same pod.
+
+# Create  a replication controller for creating 3 replicas of httpd
+
+apiVersion: v1
+kind      : ReplicationController 
+metadata  : 
+   name    : httpd-rc
+   labels  :
+      author: swetha
+spec      :
+  replicas : 3
+  template :
+    metadata:
+      name  : httpd-pod
+    spec :  
+      containers: 
+         - name   : httpd-container
+           image  : httpd  
+           ports  :
+             - containerport : 80
+               hostport      : 8080 
+
+# kubectl create -f replication-controller.yml
+# kubectl replace -f replication-controller.yml / kubectl scale --replicas==* -f replication-controller.yml  --- to increase/decrease pods

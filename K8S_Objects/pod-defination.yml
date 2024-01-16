@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webserver
+  labels:
+   author: swetha
+spec:
+  containers:
+    - name: web-container
+      image: nginx   
+
+
+
+# kubectl create -f pod-defination.yml ---- To create pods with containers, with the container image as mentioned in yml file
+
